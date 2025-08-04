@@ -1,7 +1,6 @@
-// Declare constant values for reference (optional but can help if you use them later)
-const c_rock = 0;
-const c_paper = 1;
-const c_scissors = 2;
+//Declare scores
+let humanScore = 0;
+let computerScore = 0;
 
 // Function that returns a random number from 0 to 2
 function randomNumber() {
@@ -11,11 +10,11 @@ function randomNumber() {
 // Function that returns "rock", "paper", or "scissors"
 function getComputerChoice(){
     const choice = randomNumber();
-    if (choice === c_rock) {
+    if (choice === 0) {
         return "rock";
-    } else if (choice === c_paper) {
+    } else if (choice === 1) {
         return "paper";
-    } else if (choice === c_scissors) {
+    } else if (choice === 2) {
         return "scissors";
     }
 }
@@ -34,8 +33,29 @@ function getHumanChoice(){
     }
 }
 
-// Function that tracks scores
-function playGame() {
-let humanScore = 0;
-let computerScore = 0;
+// Function that plays one round
+function playRound() {
+    const human = getHumanChoice();
+    const computer = getComputerChoice();
+
+    // Display the selections
+    console.log(`you chose: ${human}`)
+    console.log(`the computer chose: ${computer}`)
+
+    // Outcome calculation
+    if (human === computer) {
+        console.log("It's a tie!");
+    } else if (
+        (human === "rock" && computer === "scissors") ||
+        (human === "paper" && computer === "rock") ||
+        (human === "scissors" && computer === "paper")
+    ) {
+        console.log (`You win this round`);
+        humanScore++;
+    } else {
+        console.log (`Computer won this round`);
+        computerScore++;
+    }
+    console.log(`Scores => You: ${humanScore} | Computer: ${computerScore}`);
 }
+
